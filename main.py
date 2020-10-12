@@ -5,6 +5,7 @@ import os,discord,logging
 
 BOT = commands.Bot(command_prefix='$',help_command=None)
 CWD = str(__file__)[:-7] # DISCORD-BOT ディレクトリの絶対パス(末尾に/を含む)
+COLOR = 0xdddddd # 埋め込みの色
 
 with open(CWD+'meta/admin.txt','r',encoding='utf-8') as f:
     ADMINS = f.read().split('\n')
@@ -30,9 +31,13 @@ async def on_ready():
 # エラーハンドリング
 @BOT.event
 async def on_command_error(ctx,error):
-    channel = discord.utils.get(ctx.guild.channels, name="bot-log")
+    channel = discord.utils.get(ctx.guild.channels, name='bot-log')
+    embed = discord.Embed(title='エラー情報', description='', color=COLOR)
+    embed.add_field(name='該当コマンド', value='```'+str(ctx.message.content)+'```', inline=False)
+    embed.add_field(name='該当チャンネル', value='```'+str(ctx.message.channel)+'```')
+    embed.add_field(name='発生エラー', value='```'+str(error)+'```', inline=False)
     if channel is not None:
-        await channel.send("エラー")
+        await channel.send(embed=embed)
 
 # botの実行
 
