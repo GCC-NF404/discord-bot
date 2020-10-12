@@ -7,10 +7,10 @@ import os,discord,logging
 BOT = commands.Bot(command_prefix='$',help_command=None)
 CWD = str(__file__)[:-7] # DISCORD-BOT ディレクトリの絶対パス(末尾に/を含む)
 
-with open(CWD+'meta/admin.txt','r') as f:
+with open(CWD+'meta/admin.txt','r',encoding='utf-8') as f:
     ADMINS = f.read().split('\n')
 
-with open(CWD+'meta/token.txt','r') as f:
+with open(CWD+'meta/token.txt','r',encoding='utf-8') as f:
     TOKEN = f.read()
 
 # コグを自動で取得する。システム関連は後々systemクラスとかで別ファイルに分けるかもしれない。
