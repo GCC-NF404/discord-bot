@@ -1,7 +1,7 @@
 from discord.ext import commands
 import os,discord,logging
 
-BOT = commands.Bot(command_prefix='$',help_command=None)
+BOT = commands.Bot(command_prefix='$',help_command=None,intents=discord.Intents.all())
 CWD = str(__file__)[:-7]
 COLOR = 0xdddddd
 with open(CWD+'meta/admin.txt','r',encoding='utf-8') as f: ADMINS = f.read().split('\n')
