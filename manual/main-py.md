@@ -7,7 +7,7 @@ bot を起動する際はこのファイルを`nohup`などで実行します。
 ## 定数
 - `BOT`　→　[`discord.ext.commands.Bot()`](https://discordpy.readthedocs.io/ja/latest/ext/commands/api.html?highlight=bot#discord.ext.commands.Bot) のインスタンスです。
 - `CWD` → `main.py` が存在するディレクトリの絶対パスです。
-- `COLOR`　→　bot が送信する埋め込み([`discord.Embed()`](https://discordpy.readthedocs.io/ja/latest/api.html?highlight=discord%20embed#discord.Embed))の`color`引数に渡す値です。(2020-10-12 現在、公式リファレンスが`colour`と誤字していますが`color`が正しい名称です)
+- `COLOR`　→　bot が送信する埋め込み([`discord.Embed()`](https://discordpy.readthedocs.io/ja/latest/api.html?highlight=discord%20embed#discord.Embed))の`color`引数に渡す値です。(2020-10-12 現在、公式リファレンスが  ~~`colour`と誤字していますが`color`が正しい名称です~~ イギリス英語のなまり(?)のようです。お互いがお互いのエイリアスなので、引数を渡すときは`colour` でも `color` でも問題ありません)
 - `ADMINS`　→　bot の管理権限のあるユーザーの一覧です。
 - `TOKEN`　→　bot を起動するために必要な token です。
 
