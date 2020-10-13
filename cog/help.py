@@ -8,9 +8,8 @@ class Help(commands.Cog):
     def __init__(self,ctx):
         with open(CWD+'meta/help.json','r',encoding='utf-8') as f:
             self.help=json.load(f)
-            
-    # Embedを返す
-    def gen_help(self,title,description):
+
+    def genHelp(self,title,description):
         return discord.Embed(title=title,color=COLOR,description=description)
     
     @commands.command()

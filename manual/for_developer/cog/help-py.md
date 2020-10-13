@@ -22,7 +22,7 @@
 `Help` クラスのコンストラクターです。
 
 ***
-### _gen_help(self, title, description)_
+### _genHelp(self, title, description)_
 `$help` コマンドの実行結果を埋め込み
 ([`discord.Embed()`](https://discordpy.readthedocs.io/ja/latest/api.html?highlight=discord%20embed#discord.Embed))
 形式で返します。
