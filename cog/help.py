@@ -2,8 +2,6 @@ from discord.ext import commands
 import discord,json,logging
 
 CWD = str(__file__)[:-11]
-#with open(CWD+'meta/embed.json','r',encoding='utf-8') as f:
-#    j = json.load(f)
 COLOR = 0xdddddd
 
 class Help(commands.Cog):
@@ -28,3 +26,4 @@ class Help(commands.Cog):
 
 def setup(bot):
     bot.add_cog(Help(bot))
+    logging.info('コグ help のロードを終了しました。')
