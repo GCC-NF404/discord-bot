@@ -4,8 +4,8 @@ import os,discord,logging
 BOT = commands.Bot(command_prefix='$',help_command=None,intents=discord.Intents.all())
 CWD = str(__file__)[:-7]
 COLOR = 0xdddddd
-with open(CWD+'meta/admin.txt','r',encoding='utf-8') as f: ADMINS = f.read().split('\n')
-with open(CWD+'meta/token.txt','r',encoding='utf-8') as f: TOKEN = f.read()
+ADMIN = os.environ.get('ADMIN')
+TOKEN = os.environ.get('TOKEN')
 
 def load_cogs(cog_dir):
     logging.info('コグの読み込みを開始します。')
