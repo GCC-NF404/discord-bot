@@ -1,13 +1,15 @@
 from discord.ext import commands
+from components.system import BotSystem
 import os,discord,logging
 
 BOT = commands.Bot(command_prefix='$',help_command=None,intents=discord.Intents.all())
+BOTSYS = BotSystem()
 CWD = str(__file__)[:-7]
 COLOR = 0xdddddd
 
 #TOKEN = os.environ.get('TOKEN')
 
-TOKEN = 'token'
+TOKEN = 'NzY2MDkzMDc5NDE3NDU0NjYy.X4eVxw.HvOfI4ec5oRa0g7zuMmS9xmvxik'
 
 cogs = os.listdir(CWD + '/cog')
 for cog in cogs:
@@ -19,7 +21,7 @@ async def on_ready(): logging.info('botが起動しました。')
 
 @BOT.command()
 async def reload(ctx):
-    if ctx.author in [i for i in ctx.guild.members if i.top_role.id == discord.utils.get(ctx.guild.roles, name='管理者').id]:
+    if BOTSYS.is_admin(ctx):
         cogs = os.listdir(CWD + 'cog')
         allcogs = ''
         for cog in cogs:
