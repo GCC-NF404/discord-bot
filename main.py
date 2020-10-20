@@ -6,10 +6,7 @@ BOT = commands.Bot(command_prefix='$',help_command=None,intents=discord.Intents.
 BOTSYS = BotSystem()
 CWD = str(__file__)[:-7]
 COLOR = 0xdddddd
-
-#TOKEN = os.environ.get('TOKEN')
-
-TOKEN = 'NzY2MDkzMDc5NDE3NDU0NjYy.X4eVxw.HvOfI4ec5oRa0g7zuMmS9xmvxik'
+TOKEN = os.environ.get('TOKEN')
 
 cogs = os.listdir(CWD + '/cog')
 for cog in cogs:
