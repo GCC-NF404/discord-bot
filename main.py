@@ -7,7 +7,7 @@ COLOR = 0xdddddd
 
 #TOKEN = os.environ.get('TOKEN')
 
-TOKEN = 'NzY2MDkzMDc5NDE3NDU0NjYy.X4eVxw.tt4g_kQLjjZPylgmQcRsRc0FL2w'
+TOKEN = 'token'
 
 cogs = os.listdir(CWD + '/cog')
 for cog in cogs:
