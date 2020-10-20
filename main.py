@@ -4,19 +4,33 @@ import os,discord,logging
 BOT = commands.Bot(command_prefix='$',help_command=None,intents=discord.Intents.all())
 CWD = str(__file__)[:-7]
 COLOR = 0xdddddd
-ADMIN = os.environ.get('ADMIN')
-TOKEN = os.environ.get('TOKEN')
 
-def load_cogs(cog_dir):
-    logging.info('コグの読み込みを開始します。')
-    cogs = os.listdir(cog_dir+'cog')
-    for cog in cogs:
-        if cog[len(cog)-3:]=='.py':
-            BOT.load_extension('cog.'+str(cog[:-3]))
-    logging.info('コグの読み込みが完了しました。')
+#TOKEN = os.environ.get('TOKEN')
+
+TOKEN = 'NzY2MDkzMDc5NDE3NDU0NjYy.X4eVxw.tt4g_kQLjjZPylgmQcRsRc0FL2w'
+
+cogs = os.listdir(CWD + '/cog')
+for cog in cogs:
+    if(cog[len(cog)-3:] == '.py'):
+        BOT.load_extension('cog.' + str(cog[:-3]))
 
 @BOT.event
 async def on_ready(): logging.info('botが起動しました。')
+
+@BOT.command()
+async def reload(ctx):
+    if ctx.author in [i for i in ctx.guild.members if i.top_role.id == discord.utils.get(ctx.guild.roles, name='管理者').id]:
+        cogs = os.listdir(CWD + 'cog')
+        allcogs = ''
+        for cog in cogs:
+            if(cog[len(cog)-3:] == '.py'):
+                BOT.reload_extension('cog.' + str(cog[:-3]))
+                allcogs = allcogs + ( 'cog.' + str(cog[:-3]) + '\n')
+        em = discord.Embed(color=0xff7f1e)
+        em.add_field(name='再読込されたコグ一覧',value=allcogs)
+        await ctx.send(embed=em)
+    else:
+        await ctx.send('```[権限エラー] todo:reload を実行する権限が有りません```')
 
 @BOT.event
 async def on_command_error(ctx,error):
@@ -28,5 +42,4 @@ async def on_command_error(ctx,error):
     if channel is not None:
         await channel.send(embed=embed)
 
-load_cogs(CWD)
 BOT.run(TOKEN)
