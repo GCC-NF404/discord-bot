@@ -32,9 +32,9 @@ async def reload(ctx):
     else:
         await ctx.send(BOTSYS.pError)
 
-@BOT.command()
-async def debug(ctx):
-    await ctx.send('再起動のテスト')
+#@BOT.command()
+#async def debug(ctx):
+#    await ctx.send('再起動のテスト')
 
 @BOT.event
 async def on_command_error(ctx,error):
