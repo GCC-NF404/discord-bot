@@ -1,20 +1,21 @@
 from discord.ext import commands
-from components.system import BotSystem
+from components.bot_system import BotSystem
 import os,discord,logging
 
 BOT = commands.Bot(command_prefix='$',help_command=None,intents=discord.Intents.all())
 BOTSYS = BotSystem()
 CWD = str(__file__)[:-7]
 COLOR = 0xdddddd
-TOKEN = os.environ.get('TOKEN')
+TOKEN = os.getenv('BOT_TOKEN_DEV')
 
-cogs = os.listdir(CWD + '/cog')
+cogs = os.listdir(CWD + 'cog')
 for cog in cogs:
     if(cog[len(cog)-3:] == '.py'):
         BOT.load_extension('cog.' + str(cog[:-3]))
 
 @BOT.event
-async def on_ready(): logging.info('botが起動しました。')
+async def on_ready():
+    logging.info('botが起動しました。')
 
 @BOT.command()
 async def reload(ctx):
@@ -29,11 +30,11 @@ async def reload(ctx):
         em.add_field(name='再読込されたコグ一覧',value=allcogs)
         await ctx.send(embed=em)
     else:
-        await ctx.send('```[権限エラー] todo:reload を実行する権限が有りません```')
+        await ctx.send(BOTSYS.pError)
 
 @BOT.event
 async def on_command_error(ctx,error):
-    channel = discord.utils.get(ctx.guild.channels, name='bot-log')
+    channel = BOTSYS.is_exist_logch(ctx)
     embed = discord.Embed(title='エラー情報', description='', color=COLOR)
     embed.add_field(name='該当コマンド', value='```'+str(ctx.message.content)+'```', inline=False)
     embed.add_field(name='該当チャンネル', value='```'+str(ctx.message.channel)+'```')
