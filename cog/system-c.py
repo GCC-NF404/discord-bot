@@ -17,7 +17,7 @@ class System(commands.Cog):
             channel = BOTSYS.is_exist_logch(ctx)
             if channel is not None:
                 await ctx.send('```botを再起動します。```')
-            subprocess.call('git','pull','origin','master')
+            subprocess.call('git pull origin master'.sprit())
             os.execl(sys.executable, 'python3', '-B', str(__file__)[:-16]+'/main.py')
         else:
             await ctx.send(BOTSYS.pError)
