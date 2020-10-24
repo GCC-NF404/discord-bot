@@ -3,7 +3,7 @@ sys.path.append(str(__file__)[:-16])
 
 from discord.ext import commands
 from components.bot_system import BotSystem
-import os,sys,discord,logging,subprocess
+import git,os,sys,discord,logging,subprocess
 
 BOTSYS = BotSystem()
 
@@ -17,7 +17,9 @@ class System(commands.Cog):
             channel = BOTSYS.is_exist_logch(ctx)
             if channel is not None:
                 await ctx.send('```botを再起動します。```')
-            os.execl(sys.executable, 'sh', str(__file__)[:-28]+'/bot.sh')
+            g = git.cmd.Git(str(__file__)[:-16])
+            g.reset('--hard', 'origin/master')
+            os.execl(sys.executable, 'python3', str(__file__)[:-16]+'/main.py')
         else:
             await ctx.send(BOTSYS.pError)
 

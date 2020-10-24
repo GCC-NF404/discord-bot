@@ -1,15 +1,12 @@
 from discord.ext import commands
 from components.bot_system import BotSystem
-import git,os,discord,logging
+import os,discord,logging
 
 BOT = commands.Bot(command_prefix='$',help_command=None,intents=discord.Intents.all())
 BOTSYS = BotSystem()
 CWD = str(__file__)[:-7]
 COLOR = 0xdddddd
 TOKEN = os.getenv('BOT_TOKEN_DEV')
-GIT = git.cmd.Git(CWD)
-
-GIT.pull()
 
 cogs = os.listdir(CWD + 'cog')
 for cog in cogs:
